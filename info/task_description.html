@@ -1,0 +1,50 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    A lone chess bishop finds himself standing on the (zero-based indexing) square <code>(x, y)</code> of a curious <code>n * m</code> chessboard floating in outer space, covered with completely frictionless magic ice. This board is not necessarily square, but can be any rectangle of integer dimensions. The board is surrounded from all sides with bouncy walls similar to an air hockey table. Some of the squares on the board contain <code>aliens</code> that make game over man for anyone who enters that square.
+</p>
+
+<p style="text-align: justify;">
+    The bishop can initially propel himself to any of the four diagonal directions. After this initial impulse gets him going, the bishop can no longer control his movements on the frictionless ice, but will keep sliding towards whatever end the present direction vector and bouncing from the walls take him. It is even possible for the bishop to forever repeat the same cycle of squares. 
+</p>
+
+<p style="text-align: justify;">
+    The bishop must reach any one of the four possible exits at the four corners of the board. This function should determine whether there exists at least one starting direction that leads the bishop to the safety of any one of the four corners, avoiding all the <code>aliens</code> along the way. Look at the example <code>x = 3, y = 2, n = 5, m = 4, aliens = [(2, 2), (1, 4)]</code> 
+</p>
+
+<p style="text-align: center;">
+    <img title="example" src="{{MEDIA}}bishop-vs-aliens.svg" alt="example" style="max-height: 200px"/>
+</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong> Four integers <span translate="no">({% if is_js %}number{% else %}int{% endif %})</span> and <span translate="repeat">{% if is_js %}array{% else %}list{% endif %}</span> of tuples of two integers.
+</p>
+
+<p>
+    <strong>Output:</strong> Logic value <span translate="no">(bool{% if is_js %}ean{% endif %})</span>. 
+</p>
+
+<p>
+    <strong>Examples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<!-- <p class="for_info_only">
+
+    <strong>How it’s used:</strong>
+    <i>(math is used everywhere)</i>
+</p> -->
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Precondition:</strong>
+    <ul>
+    <li><i>both given ints should be between -1000 and 1000</i></li>
+    </ul>
+</p>
+<p><i>The mission was taken from <span translate="no">Python CCPS 109</span>. It is taught for <span translate="no">Ryerson Chang School of Continuing Education</span> by <a href="https://github.com/ikokkari">Ilkka Kokkarinen</a></i></p>
