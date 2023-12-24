@@ -39,21 +39,20 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
                     'stroke-width' : '0px',
                 },
                 escape_way: {
-                'arrow-end': 'block-wide-long',
-                }
+                    'arrow-end': 'block-wide-long',
+                },
             }
 
             /**
-            * 
-            * values
-            * 
-            */
-            const input = data.in
-            const grid_seize_px_h = 200
-            const grid_seize_px_w = 200
-            const os = 10
-            const [sx, sy, width, height, aliens] = input
+             * 
+             * values
+             * 
+             */
+            const [sx, sy, width, height, aliens] = data.in
             const unit = 200 / Math.max(width, height)
+            const os = 10
+            const grid_seize_px_w = unit * width + os * 2
+            const grid_seize_px_h = unit * height + os * 2
             const scale = unit / 40
             const bishop = [sx, sy]
             const exits = [[0, 0], [width-1, 0], [0, height-1], [width-1, height-1]]
@@ -66,7 +65,7 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             const d2 = "m 23.8125,4.6354152 c 1.494344,0.1943524 2.47931,0.9606266 2.645833,2.6458333 V 29.770833 c -0.165919,1.327478 -1.17786,2.128534 -2.645833,2.645833"
 
             // paper
-            const paper = Raphael(tgt_node, grid_seize_px_w + os * 2, grid_seize_px_h + os * 2)
+            const paper = Raphael(tgt_node, grid_seize_px_w, grid_seize_px_h)
 
             // draw grid
             for (let i = 0; i < height; i += 1) {
@@ -105,10 +104,10 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             })
 
             /**
-            * 
-            * svg coordinates scaling
-            * 
-            */
+             * 
+             * svg coordinates scaling
+             * 
+             */
             function scaling(d1, scale){
                 let result = ''
                 let digit = ''
@@ -123,7 +122,6 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
                         result += d
                     }
                 })
-
                 if (digit != ''){
                     result += parseFloat(digit) * scale
                 }
@@ -131,10 +129,10 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             }
 
             /**
-            *
-            * draw air-lock
-            *
-            */
+             *
+             * draw air-lock
+             *
+             */
             function draw_door(dx, dy, scale) {
                 const door_set = paper.set()
                 door_set.push(paper.path(scaling(d1, scale))).attr(attr.door).attr({'stroke-width': 1 * scale + 'px'})
@@ -145,10 +143,10 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             }
 
             /**
-            *
-            * draw bishop
-            *
-            */
+             *
+             * draw bishop
+             *
+             */
 
             function draw_bishop(bx, by, scale) {
                 const bishop = paper.path(scaling(b1, scale)).attr(attr.bishop)
@@ -158,10 +156,10 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             }
 
             /**
-            *
-            * draw alien
-            *
-            */
+             *
+             * draw alien
+             *
+             */
             function draw_alien(ax, ay, scale) {
                 const alien_set = paper.set()
                 alien_set.push(paper.path(scaling(a1, scale)).attr(attr.alien.face))
@@ -173,10 +171,10 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             }
 
             /**
-            * 
-            * ary_equals
-            * 
-            */
+             * 
+             * ary_equals
+             * 
+             */
             function ary_equals(a, b) {
                 let j = b.length
                 while (j--) {
@@ -188,10 +186,10 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             }
 
             /**
-            * 
-            * ary_includes
-            * 
-            */
+             * 
+             * ary_includes
+             * 
+             */
             function ary_includes(a, b) {
                 let i = b.length
                 while (i--) {
@@ -203,16 +201,15 @@ requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
             }
 
             /**
-            * 
-            * make escape_way
-            * 
-            */
+             * 
+             * make escape_way
+             * 
+             */
             function escape_way() {
                 let way = [];
                 let good_ways = []
                 let bad_ways = []
                 const ds = [[-1, -1], [-1, 1], [1, -1], [1, 1]]
-
                 ds.forEach(([dx, dy])=>{
                     way = [[sx, sy]]
                     if ((sx + dx) >= 0 && (sx + dx) < width && (sy + dy) >= 0 && (sy + dy) < height) {
